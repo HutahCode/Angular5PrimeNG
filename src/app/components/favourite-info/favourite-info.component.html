@@ -1,0 +1,13 @@
+<div class="form-group">
+  <div class="ui-inputgroup">
+    <span class="ui-float-label">
+      <input id="favouriteKey" type="text" pInputText [(ngModel)]="favourite.favKey" size="15" />
+      <label for="favouriteKey"></label>
+    </span>
+    <span class="ui-float-label">
+        <input id="favouriteValue" type="text" pInputText [(ngModel)]="favourite.favValue" size="15" />
+        <label for="favouriteValue"></label>
+      </span>
+      <button pButton type="button" icon="fa-close" class="ui-button-danger" (click)="deleteFavourite(favourite)"></button>
+  </div>
+</div>

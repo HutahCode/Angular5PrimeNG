@@ -1,0 +1,35 @@
+
+<p-dataTable [value]="candidateList">
+  <p-header>
+      <div class="ui-helper-clearfix" style="width:100%">
+        <span>List Of Candidates</span>
+        <button type="button" pButton icon="fa-plus" style="float:right" label="Add"
+            (click)="addNewCandidate()"></button>
+      </div>
+  </p-header>
+  <p-column field="id" header="Id"></p-column>
+  <p-column field="name" header="Name"></p-column>
+  <p-column field="dob" header="DOB">
+    <ng-template let-row="rowData" pTemplate="body">
+      {{row.dob | date: 'MM/dd/yyyy'}}
+    </ng-template>
+  </p-column>
+  <p-column field="gender" header="Gender"></p-column>
+  <p-column styleClass="col-button" [style]="{'width':'75px','text-align':'center'}">
+      <ng-template let-candidate1="rowData" pTemplate="body">
+          <button type="button" pButton (click)="selectCandidate(candidate1)"  icon="fa-edit"></button>
+      </ng-template>
+  </p-column>
+  <p-column styleClass="col-button" [style]="{'width':'75px','text-align':'center'}">
+      <ng-template let-candidate="rowData" pTemplate="body">
+          <button type="button" pButton  (click)="deleteCandidate(candidate)" icon="fa-trash" class="ui-button-danger"></button>
+      </ng-template>
+  </p-column>
+</p-dataTable>
+
+<div *ngIf="candidate">
+  <app-candidate-detail [candidate]="candidate"  (saveCandidateEvent)="saveCandidate($event)"
+     (closeDialogEvent)="closeDialogForm()" ></app-candidate-detail>
+</div>
+
+<p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="425"></p-confirmDialog>
